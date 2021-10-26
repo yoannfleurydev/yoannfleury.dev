@@ -1,0 +1,32 @@
+.container {
+  background-image: url("/day.png");
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  &Day {
+    composes: container;
+    background-image: url("/day.png");
+  }
+
+  &Night {
+    composes: container;
+    background-image: url("/night.png");
+  }
+
+  &Sunset {
+    composes: container;
+    background-image: url("/sunset.png");
+  }
+}
+
+.card {
+  max-width: 40vw;
+  padding: 2rem;
+  border-radius: 4px;
+  background-color: rgba($color: #ffffff, $alpha: 0.8);
+}
