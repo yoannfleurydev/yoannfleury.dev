@@ -47,10 +47,24 @@ const Home: NextPage<HomeProps> = ({ hours }) => {
       <div className={styles.card}>
         <p>Hello! Bonjour !</p>
         <p>
-          My name is <strong>Yoann Fleury</strong>, I am a front-end web
+          My name is <strong>Yoann Fleury</strong>, I am a frontend web
           developer at{" "}
-          <a href="https://www.bearstudio.fr" title="BearStudio's main page">
+          <a
+            href="https://www.bearstudio.fr"
+            title="BearStudio's main page"
+            target="_blank"
+            rel="noreferrer"
+          >
             BearStudio
+          </a>{" "}
+          and a volunteer at{" "}
+          <a
+            href="https://www.codeursenseine.com"
+            title="Codeurs en Seine website, a french association"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Codeurs en Seine
           </a>
         </p>
         <p>
@@ -58,6 +72,8 @@ const Home: NextPage<HomeProps> = ({ hours }) => {
           <a
             href="https://twitter.com/yoannfleurydev"
             title="Yoann Fleury's Twitter profile"
+            target="_blank"
+            rel="noreferrer"
           >
             Twitter
           </a>
@@ -65,6 +81,8 @@ const Home: NextPage<HomeProps> = ({ hours }) => {
           <a
             href="https://github.com/yoannfleurydev"
             title="Yoann Fleury's GitHub profile"
+            target="_blank"
+            rel="noreferrer"
           >
             GitHub
           </a>
@@ -72,6 +90,8 @@ const Home: NextPage<HomeProps> = ({ hours }) => {
           <a
             href="https://changelog.yoannfleury.dev"
             title="Yoann Fleury's Polywork page"
+            target="_blank"
+            rel="noreferrer"
           >
             Polywork
           </a>
@@ -79,6 +99,8 @@ const Home: NextPage<HomeProps> = ({ hours }) => {
           <a
             href="https://www.linkedin.com/in/yoannfleurydev/"
             title="Yoann Fleury's LinkedIn profile"
+            target="_blank"
+            rel="noreferrer"
           >
             LinkedIn
           </a>{" "}
