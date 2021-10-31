@@ -2,7 +2,11 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 
-const Home: NextPage = () => {
+type HomeProps = {
+  hours: number;
+};
+
+const Home: NextPage<HomeProps> = ({ hours }) => {
   const containerStyles = {
     sunrise: {
       hours: [5, 11],
@@ -23,8 +27,6 @@ const Home: NextPage = () => {
   };
 
   const getContainerStyle = () => {
-    const hours = new Date().getHours();
-
     // This rule works for 3 of 4 cases, so we return night by default to
     // cover the last case.
     return (
@@ -86,5 +88,9 @@ const Home: NextPage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  return { props: { hours: new Date().getHours() } };
+}
 
 export default Home;
