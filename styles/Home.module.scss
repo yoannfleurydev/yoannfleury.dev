@@ -36,3 +36,10 @@
     max-width: 80vw;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    color: #ffffff;
+    background-color: rgba($color: #000000, $alpha: 0.8);
+  }
+}
