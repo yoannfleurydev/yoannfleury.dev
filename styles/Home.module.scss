@@ -30,3 +30,9 @@
   border-radius: 4px;
   background-color: rgba($color: #ffffff, $alpha: 0.8);
 }
+
+@media only screen and (max-width: 800px) {
+  .card {
+    max-width: 80vw;
+  }
+}
