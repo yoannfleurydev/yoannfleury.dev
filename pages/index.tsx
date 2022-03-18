@@ -40,8 +40,11 @@ const Home: NextPage<HomeProps> = ({ hours }) => {
   return (
     <div className={getContainerStyle()?.style}>
       <Head>
-        <title>Yoann Fleury</title>
-        <meta name="description" content="" />
+        <title>Yoann Fleury - Web Developer</title>
+        <meta
+          name="description"
+          content="Yoann Fleury, frontend web developer at BearStudio and volunteer at Codeurs en Seine"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.card}>
