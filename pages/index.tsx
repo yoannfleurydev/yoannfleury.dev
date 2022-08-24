@@ -94,6 +94,15 @@ const Home: NextPage<HomeProps> = ({ hours }) => {
             </a>
             ,{" "}
             <a
+              href="https://www.instagram.com/yoannfleurydev"
+              title="Yoann Fleury's Instagram profile"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Instagram
+            </a>
+            ,{" "}
+            <a
               href="https://github.com/yoannfleurydev"
               title="Yoann Fleury's GitHub profile"
               target="_blank"
