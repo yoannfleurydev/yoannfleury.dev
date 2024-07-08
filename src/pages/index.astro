@@ -1,28 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Link from "../components/Link.astro";
+import Hero from "../sections/Hero.astro";
 ---
 
 <Layout title="Yoann Fleury - Web Developer">
-  <div class="flex flex-1 flex-col justify-center align-middle m">
-    <div
-      class="bg-white/50 p-4 m-1 rounded-sm sm:m-4 sm:p-10 md:m-auto md:max-w-xl md:rounded-md space-y-4"
-    >
-      <p>Hello! Bonjour&nbsp;!</p>
-      <p>
-        My name is <strong class="font-bold">Yoann Fleury</strong>, I am a
-        frontend web developer at
-        <Link href="https://www.bearstudio.fr" title="BearStudio's main page"
-          >BearStudio</Link
-        >
-        and an organizer at
-        <Link
-          href="https://www.forkit.community/"
-          title="Fork it! Community website">Fork it! Community</Link
-        >
-      </p>
-      <p>
+  <Hero />
+
+  <div class="px-6 py-24 sm:py-32 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2
+        class="text-4xl font-bold font-heading tracking-tight text-secondary sm:text-6xl"
+      >
         Follow me on
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-primary">
         <Link
           href="https://twitter.com/yoannfleurydev"
           title="Yoann Fleury's Twitter profile">Twitter</Link
@@ -39,8 +31,10 @@ import Link from "../components/Link.astro";
           href="https://changelog.yoannfleury.dev"
           title="Yoann Fleury's Polywork page">Polywork</Link
         >, or add me on Discord with the username
-        <em>yoannfleurydev</em>
+        <em>yoannfleurydev</em>.
       </p>
     </div>
+
+    <p></p>
   </div>
 </Layout>
