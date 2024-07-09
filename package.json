@@ -10,13 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.10",
-    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/check": "0.8.0",
+    "@astrojs/tailwind": "5.1.0",
     "@fontsource-variable/sono": "5.0.20",
     "@fontsource-variable/work-sans": "5.0.19",
-    "astro": "^4.5.17",
+    "astro": "4.11.5",
     "sharp": "0.33.4",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.4"
+    "tailwindcss": "3.4.4",
+    "typescript": "5.5.3"
   }
 }
