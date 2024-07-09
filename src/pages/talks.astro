@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import Link from "../components/Link.astro";
+import Layout from "../layouts/Layout.astro";
+
+const talks = (await getCollection("talks")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Layout title="Talks | Yoann Fleury">
+  <div class="py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl">
+        <h2
+          class="text-3xl font-bold font-heading tracking-tight text-secondary sm:text-4xl"
+        >
+          Talks
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-primary">
+          Talks I have given over the years
+        </p>
+        <div
+          class="mt-10 space-y-16 border-t border-secondary pt-10 sm:mt-16 sm:pt-16"
+        >
+          {
+            talks.map((talk) => (
+              <article class="flex max-w-xl flex-col gap-2 items-start justify-between">
+                <div class="flex items-center gap-x-2 text-xs text-gray-400">
+                  <time datetime={talk.data.date.toISOString()}>
+                    {talk.data.date.getFullYear()}
+                  </time>
+                  {talk.data.language && (
+                    <>
+                      <span>·</span>
+                      <span class="capitalize">{talk.data.language}</span>
+                    </>
+                  )}
+                  {talk.data.location && (
+                    <>
+                      <span>·</span>
+                      <span>{talk.data.location}</span>
+                    </>
+                  )}
+                </div>
+                <div class="group relative">
+                  <h3 class="mt-3 text-lg font-semibold leading-6 text-primary group-hover:text-secondary">
+                    <a href={talk.data.url}>
+                      <span class="absolute inset-0" />
+                      {talk.data.title}
+                    </a>
+                  </h3>
+                  {talk.data.description && (
+                    <p class="mt-5 text-sm leading-6 text-primary">
+                      {talk.data.description}
+                    </p>
+                  )}
+                </div>
+                {talk.data.vod && (
+                  <Link title="YouTube" href={talk.data.vod}>
+                    VOD
+                  </Link>
+                )}
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

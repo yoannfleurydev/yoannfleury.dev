@@ -4,88 +4,49 @@ import Link from "../components/Link.astro";
 import yoann from "../assets/yoann-fleury.png";
 ---
 
-<div>
-  <header class="absolute inset-x-0 top-0 z-50">
-    <div class="mx-auto max-w-7xl">
-      <div class="px-6 pt-6 lg:max-w-2xl lg:pl-8 lg:pr-0">
-        <nav
-          class="flex items-center justify-between lg:justify-start"
-          aria-label="Global"
-        >
-          <div class="flex gap-x-8">
-            <a
-              href="/"
-              class="text-sm font-semibold text-primary hover:text-secondary"
-              >Home</a
-            >
-            <!-- <a
-              href="/blog"
-              class="text-sm font-semibold text-primary hover:text-secondary"
-              >Blog</a
-            >
-            <a
-              href="/about"
-              class="text-sm font-semibold text-primary hover:text-secondary"
-              >About</a
-            > -->
-          </div>
-        </nav>
-      </div>
-    </div>
-  </header>
+<div class="relative">
+  <div class="mx-auto max-w-7xl">
+    <div class="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
+      <svg
+        class="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-gray-900 lg:block"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <polygon points="0,0 90,0 50,100 0,100"></polygon>
+      </svg>
 
-  <div class="relative">
-    <div class="mx-auto max-w-7xl">
-      <div class="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
-        <svg
-          class="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-background lg:block"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <polygon points="0,0 90,0 50,100 0,100"></polygon>
-        </svg>
-
-        <div class="relative px-6 py-32 sm:py-40 lg:px-8 lg:py-56 lg:pr-0">
-          <div
-            class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl flex flex-col gap-4"
+      <div class="relative px-6 py-32 sm:py-40 lg:px-8 lg:py-56 lg:pr-0">
+        <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl flex flex-col gap-4">
+          <h1
+            class="text-4xl font-heading font-bold tracking-tight text-secondary sm:text-6xl"
           >
-            <h1
-              class="text-4xl font-heading font-bold tracking-tight text-secondary sm:text-6xl"
+            Hello! Bonjour&nbsp;!
+          </h1>
+          <p class="text-lg leading-8 text-primary">
+            My name is <strong class="font-bold text-secondary"
+              >Yoann Fleury</strong
+            >, I am a frontend web developer at
+            <Link
+              href="https://www.bearstudio.fr"
+              title="BearStudio's main page">BearStudio</Link
             >
-              Hello! Bonjour&nbsp;!
-            </h1>
-            <p class="text-lg leading-8 text-primary">
-              My name is <strong class="font-bold text-secondary"
-                >Yoann Fleury</strong
-              >, I am a frontend web developer at
-              <Link
-                href="https://www.bearstudio.fr"
-                title="BearStudio's main page">BearStudio</Link
-              >
-              and an organizer at
-              <Link
-                href="https://www.forkit.community/"
-                title="Fork it! Community website">Fork it! Community</Link
-              >
-            </p>
-            <!-- <div class="mt-8 flex items-center gap-x-6">
-              <a
-                href="/about"
-                class="rounded-md bg-secondary px-3.5 py-2.5 text-sm font-semibold text-background shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >About</a
-              >
-            </div> -->
-          </div>
+            and an organizer at
+            <Link
+              href="https://www.forkit.community/"
+              title="Fork it! Community website">Fork it! Community</Link
+            >
+          </p>
         </div>
       </div>
     </div>
-    <div class="bg-background lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-      <Image
-        class="aspect-square object-cover lg:aspect-auto lg:h-full lg:w-full"
-        src={yoann}
-        alt="Yoann speaking in front of more than one thousand attendees for Codeurs en Seine 2023"
-      />
-    </div>
+  </div>
+  <div class="bg-gray-900 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+    <Image
+      class="aspect-square object-cover lg:aspect-auto lg:h-full lg:w-full object-left-top"
+      src={yoann}
+      alt="Yoann speaking in front of more than one thousand attendees for Codeurs en Seine 2023"
+      loading="eager"
+    />
   </div>
 </div>
