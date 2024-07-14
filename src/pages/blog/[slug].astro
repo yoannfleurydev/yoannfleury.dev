@@ -1,0 +1,35 @@
+---
+import type { GetStaticPaths } from "astro";
+import BlogLayout from "@/layouts/BlogLayout.astro";
+import { getCollection } from "astro:content";
+import { subYears, isBefore } from "date-fns";
+
+export const getStaticPaths = (async () => {
+  const blogCollection = await getCollection("blog");
+
+  return blogCollection
+    .filter((blog) => blog.data.published)
+    .map((blog) => ({ params: { slug: blog.slug }, props: { blog } }));
+}) satisfies GetStaticPaths;
+
+const { blog } = Astro.props;
+const { Content } = await blog.render();
+
+const nowMinus2Years = subYears(new Date(), 2);
+const shouldDisplayWarning = isBefore(blog.data.date, nowMinus2Years);
+---
+
+<BlogLayout title={blog.data.title} description={blog.data.description}>
+  {
+    shouldDisplayWarning && (
+      <div class="border-[1px] border-solid border-secondary rounded-sm p-4 bg-gray-800">
+        <span role="img" aria-label="attention">
+          ⚠️
+        </span>{" "}
+        Le contenu de cet article est assez vieux, il est possible qu'il ne soit
+        plus vrai aujourd'hui.
+      </div>
+    )
+  }
+  <Content />
+</BlogLayout>
