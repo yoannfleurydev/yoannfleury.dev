@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.yoannfleury.dev
+
+# Sitemaps
+Sitemap: https://www.yoannfleury.dev/sitemap-index.xml

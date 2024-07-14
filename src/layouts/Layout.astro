@@ -20,9 +20,15 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.png" sizes="32x32" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <meta name="description" content={description} />
+    <meta
+      name="description"
+      content={description ||
+        "Yoann Fleury, frontend web developer at BearStudio and organizer at Fork it! Community"}
+    />
+    <slot name="seo" />
   </head>
   <body class="flex flex-col h-screen bg-gray-900 text-primary">
     <header class="absolute inset-x-0 top-0 z-50">

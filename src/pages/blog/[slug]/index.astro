@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import BlogLayout from "@/layouts/BlogLayout.astro";
 import { subYears, isBefore } from "date-fns";
 import { getBlogCollection } from "@/lib/blog";
+import SEO from "@/components/SEO.astro";
 
 export const getStaticPaths = (async () => {
   const blogCollection = await getBlogCollection();
@@ -21,6 +22,12 @@ const shouldDisplayWarning = isBefore(blog.data.date, nowMinus2Years);
 ---
 
 <BlogLayout title={blog.data.title} description={blog.data.description ?? ""}>
+  <SEO
+    slot="seo"
+    ogImage={Astro.url.pathname + "/og-image.png"}
+    ogTitle={blog.data.title}
+  />
+
   {
     shouldDisplayWarning && (
       <div class="border-[1px] border-solid border-secondary rounded-sm p-4 bg-gray-800">

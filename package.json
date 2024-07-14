@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "0.8.0",
     "@astrojs/mdx": "3.1.2",
+    "@astrojs/sitemap": "3.1.6",
     "@astrojs/tailwind": "5.1.0",
     "@fontsource-variable/sono": "5.0.20",
     "@fontsource-variable/work-sans": "5.0.19",
