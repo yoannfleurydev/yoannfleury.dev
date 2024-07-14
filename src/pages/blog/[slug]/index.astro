@@ -24,8 +24,9 @@ const shouldDisplayWarning = isBefore(blog.data.date, nowMinus2Years);
 <BlogLayout title={blog.data.title} description={blog.data.description ?? ""}>
   <SEO
     slot="seo"
-    ogImage={Astro.url.pathname + "/og-image.png"}
+    ogImage={Astro.site + "/blog/" + blog.slug + "/og-image.png"}
     ogTitle={blog.data.title}
+    ogType="article"
   />
 
   {
