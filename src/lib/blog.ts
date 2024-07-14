@@ -5,7 +5,7 @@ export async function getBlogCollection() {
     return Boolean(import.meta.env.DEV || data.published);
   });
 
-  return collection.toSorted(
-    (a, b) => b.data.date.getTime() - a.data.date.getTime()
-  );
+  return collection
+    .toSorted((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .map((post) => ({ ...post, computed: { link: `/blog/${post.slug}` } }));
 }
