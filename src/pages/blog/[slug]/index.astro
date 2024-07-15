@@ -19,12 +19,14 @@ const { Content } = await blog.render();
 
 const nowMinus2Years = subYears(new Date(), 2);
 const shouldDisplayWarning = isBefore(blog.data.date, nowMinus2Years);
+
+const ogImage = new URL(Astro.url.pathname + "/og-image.png", Astro.site);
 ---
 
 <BlogLayout title={blog.data.title} description={blog.data.description ?? ""}>
   <SEO
     slot="seo"
-    ogImage={Astro.site + "/blog/" + blog.slug + "/og-image.png"}
+    ogImage={ogImage}
     ogTitle={blog.data.title}
     ogType="article"
   />

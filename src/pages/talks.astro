@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Link from "../components/Link.astro";
 import Layout from "../layouts/Layout.astro";
+import SEO from "@/components/SEO.astro";
 
 const talks = (await getCollection("talks")).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -9,6 +10,11 @@ const talks = (await getCollection("talks")).sort(
 ---
 
 <Layout title="Talks | Yoann Fleury">
+  <SEO
+    slot="seo"
+    ogTitle="Talks"
+    ogImage={new URL("/og-image.png", Astro.site)}
+  />
   <div class="py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-2xl">
