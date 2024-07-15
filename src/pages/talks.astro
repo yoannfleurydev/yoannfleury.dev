@@ -13,11 +13,7 @@ const talks = (await getCollection("talks")).sort(
   title="Talks | Yoann Fleury"
   description="Talks in French and English I have given around the world. I speak about React, TypeScript and web development in general."
 >
-  <SEO
-    slot="seo"
-    ogTitle="Talks"
-    ogImage={new URL("/og-image.png", Astro.site)}
-  />
+  <SEO slot="seo" ogTitle="Talks" />
   <div class="py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-2xl">

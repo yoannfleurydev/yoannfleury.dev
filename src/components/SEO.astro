@@ -1,6 +1,6 @@
 ---
 interface Props {
-  ogImage: URL;
+  ogImage?: URL;
   ogType?: "website" | "article";
   ogTitle: string;
   description?: string;
@@ -8,7 +8,7 @@ interface Props {
 }
 
 const {
-  ogImage,
+  ogImage = new URL("/og-image.png", Astro.site),
   ogType = "website",
   ogTitle,
   description,

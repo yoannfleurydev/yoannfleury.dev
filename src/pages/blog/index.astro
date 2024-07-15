@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { format } from "@/lib/date";
 import { getBlogCollection } from "@/lib/blog";
+import SEO from "@/components/SEO.astro";
 
 const blogCollection = await getBlogCollection();
 ---
@@ -10,6 +11,7 @@ const blogCollection = await getBlogCollection();
   title="Blog | Yoann Fleury"
   description="All my blog posts are available on this website. Some may be in French, others in english. Feel free to propose for translations."
 >
+  <SEO slot="seo" ogTitle="Talks" />
   <div class="py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-2xl">
