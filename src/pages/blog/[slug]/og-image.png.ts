@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import satori from "satori";
 import sharp from "sharp";
 import type { APIRoute } from "astro";
-import { getCollection, getEntryBySlug } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -12,11 +12,12 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute = async function get({ params }) {
-  const post = await getEntryBySlug("blog", params.slug ?? "");
+  const post = await getEntry("blog", params.slug ?? "");
 
   const sonoData = await fs.readFile("./public/fonts/sono/Sono-Regular.ttf");
 
   const svg = await satori(
+    // @ts-ignore Satori want ReactNode when react is installed.
     {
       type: "div",
       props: {

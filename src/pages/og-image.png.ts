@@ -16,6 +16,7 @@ export const GET: APIRoute = async function get() {
   const sonoData = await fs.readFile("./public/fonts/sono/Sono-Regular.ttf");
 
   const svg = await satori(
+    // @ts-ignore Satori want ReactNode when react is installed.
     {
       type: "div",
       props: {
