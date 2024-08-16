@@ -7,6 +7,10 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
+  experimental: {
+    contentLayer: true,
+    contentIntellisense: true,
+  },
   site: "https://www.yoannfleury.dev",
   markdown: {
     shikiConfig: {
