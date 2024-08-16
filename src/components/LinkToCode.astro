@@ -1,0 +1,15 @@
+---
+interface Props {
+  href: string;
+  title?: string;
+}
+
+const props = Astro.props;
+---
+
+<a
+  {...props}
+  target="_blank"
+  rel="noreferrer"
+  class="text-xs text-gray-300 self-center"><slot /></a
+>
