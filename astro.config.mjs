@@ -4,6 +4,7 @@ import mdx from "@astrojs/mdx";
 import { rendererRich, transformerTwoslash } from "@shikijs/twoslash";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
+import vercel from "@astrojs/vercel/static";
 
 // https://astro.build/config
 export default defineConfig({
@@ -35,4 +36,9 @@ export default defineConfig({
     sitemap(),
     react(),
   ],
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
 });
