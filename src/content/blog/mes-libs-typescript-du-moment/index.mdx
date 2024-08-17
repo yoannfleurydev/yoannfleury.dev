@@ -19,7 +19,9 @@ Pour accompagner cet article, je te propose un son que j'ai découvert en l'écr
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7Bf0RPsldDH7jVi9H3wODv?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="eager" title="Spotify embed player"></iframe>
 
 Je dis souvent lors des formations TypeScript que je donne que le meilleur TypeScript que l’on produit, c’est celui que l’on n’écrit pas.
-Ce que j’entends par là, c’est que le meilleur moyen de profiter de TypeScript, c’est de profiter de son inférence de types, parce qu'on ne va pas se mentir, personne n'aime maintenir des types, mais également en évitant d'écrire du code spécifique à TypeScript comme, par exemple, les `enum` ou les `namespace`.
+Ce que j’entends par là, c’est que le meilleur moyen de profiter de TypeScript, c’est de profiter de son inférence de types, parce qu'on ne va pas se mentir, personne n'aime maintenir des types.
+Un des autres moyens d'écrire du bon TS, c'est d'éviter d'écrire du code spécifique à TypeScript comme, par exemple, les `enum` ou les `namespace` qui sont une feature en plus qui devra être traduit en JavaScript, mais qui ne fait pas du 1 pour 1.
+
 La meilleure manière de produire une application web écrite en TS, c’est de mettre les types robustes au plus bas, ce qui est bien souvent la couche HTTP dans une application web, car il faut valider les entrées et sorties de notre application.
 
 Et pour cela, commençons par la première bibliothèque que j’utilise en ce moment (et depuis quelques temps maintenant, mais ça fait quelques années que je n’ai pas écrit d’article).
