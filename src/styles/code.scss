@@ -1,4 +1,4 @@
 // fixes an issue where type popups are cut off
 .astro-code {
-  overflow: visible !important;
+  overflow: auto !important;
 }
