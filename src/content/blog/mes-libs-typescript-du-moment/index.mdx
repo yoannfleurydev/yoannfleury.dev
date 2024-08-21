@@ -1,11 +1,11 @@
 ---
 title: Mes libs TypeScript du moment
-date: 2024-08-17T22:00:00.000Z
+date: 2024-08-21T17:00:00.000Z
 description: >
   Écrire du code OK, écrire du TypeScript, pas OK, ou plutôt, le moins j'en
   écris, le mieux je me porte. Voici donc les libs qui me permettent d'en écrire
   moins et qui me font profiter un maximum de l'inférence de type.
-published: false
+published: true
 tags:
   - typescript
   - zod
@@ -20,11 +20,12 @@ Pour accompagner cet article, je te propose un son que j'ai découvert en l'écr
 
 Je dis souvent lors des formations TypeScript que je donne que le meilleur TypeScript que l’on produit, c’est celui que l’on n’écrit pas.
 Ce que j’entends par là, c’est que le meilleur moyen de profiter de TypeScript, c’est de profiter de son inférence de types, parce qu'on ne va pas se mentir, personne n'aime maintenir des types.
-Un des autres moyens d'écrire du bon TS, c'est d'éviter d'écrire du code spécifique à TypeScript comme, par exemple, les `enum` ou les `namespace` qui sont une feature en plus qui devra être traduit en JavaScript, mais qui ne fait pas du 1 pour 1.
+Un des autres moyens d'écrire du bon TS, c'est d'éviter d'écrire du code spécifique à TypeScript comme, par exemple, les `enum` ou les `namespace` qui sont une feature en plus qui devra être traduit en JavaScript, mais qui ne se fait pas du tout en 1 pour 1.
 
 La meilleure manière de produire une application web écrite en TS, c’est de mettre les types robustes au plus bas, ce qui est bien souvent la couche HTTP dans une application web, car il faut valider les entrées et sorties de notre application.
+Entrées, ça veut aussi dire les formulaires pour vérifier les entrées utilisateur·ice·s.
 
-Et pour cela, commençons par la première bibliothèque que j’utilise en ce moment (et depuis quelques temps maintenant, mais ça fait quelques années que je n’ai pas écrit d’article).
+Et pour cela, commençons par la première bibliothèque que j’utilise en ce moment (depuis quelques temps maintenant, mais ça fait quelques années que je n’ai pas écrit d’article).
 
 ## zod
 
@@ -89,19 +90,19 @@ const myCharacter = zCharacter().parse(data);
 
 On voit donc la convention en `zMonEntite` sous forme de fonction pour garder le concept de base de zod et de pouvoir passer d’éventuels paramètres à l’avenir.
 
-Suite à la déclaration du schéma, je l'utilise pour _parser_ directement les données que je reçois dans mes services, ce qui me permet de profiter de l’inférence de type dans ces services et de profiter du typage de bout en bout jusqu’à mes pages dans lesquelles j’utilise mes `useQuery` déclarés et inférés.
+Suite à la déclaration du schéma, je l'utilise pour _parser_ directement les données que je reçois dans mes services, ce qui me permet de profiter de l’inférence de type dans ces services et de profiter du typage de bout en bout jusqu’à mes pages dans lesquelles j’utilise mes [`useQuery`](https://tanstack.com/query/latest/docs/framework/react/reference/useQuery) (de [TanStack Query](https://tanstack.com/query/latest)) déclarés et inférés.
 
 Ces schémas me servent également à valider mes formulaires depuis que j’utilise React Hook Form, bien pratique car mes données sont directement validées à partir des entrées utilisateur·ice·s jusqu’à l’API.
 
 Je ne vais pas faire le tour de toute les fonctionnalités de `zod` dans cet article car ce serait bien trop long, mais je t’invite fortement à le tester dans un [Playground TypeScript](https://www.typescriptlang.org/play).
 
-<Information>Il est possible d’utiliser des dépendances dans les Playground TypeScript, écrit juste l’import, et ça va aller récupérer la dépendance automatiquement pour pouvoir jouer avec directement dedans.</Information>
+<Information>Il est possible d’utiliser des dépendances dans les Playground TypeScript, écrit l’import et ça va aller récupérer la dépendance automatiquement pour que tu puisses jouer avec directement dans le Playground.</Information>
 
 ## Boxed
 
-Une lib que j’utilise un peu moins mais que je trouve bien pratique de temps en temps, qui s’inspire de la programmation fonctionnelle, c’est [Boxed](https://swan-io.github.io/boxed/) par l’équipe de chez Swan.
+Une lib que j’utilise un peu moins mais que je trouve bien pratique de temps en temps, qui s’inspire de la programmation fonctionnelle, c’est [Boxed](https://swan-io.github.io/boxed/) par l’équipe de chez [Swan](https://www.swan.io/).
 
-Elle permet de mettre en place des structures relativement classique pour faire de la programmation fonctionnelle, ce qui me rappelle [mes petites sessions de Rust](https://www.bearstudio.fr/blog/developpement/rust). On y retrouve Result et Option qui sont bien pratiques pour les fonctions les plus basses pour lesquelles on retournerait par exemple `null` ou `undefined`.
+Elle permet de mettre en place des structures relativement classique pour faire de la programmation fonctionnelle, ce qui me rappelle [mes petites sessions de Rust](https://www.bearstudio.fr/blog/developpement/rust). On y retrouve `Result`, bien pratique dans le cas de l'écriture d'une fonction pour laquelle on a de la gestion d'erreur et `Option` pour les fonctions les plus basses pour lesquelles on retournerait par exemple `null`, `undefined`.
 Ces dernières sont deux “valeurs” que je tente de retirer de plus en plus de mon code pour m’assurer une _type-safety_ au maximum.
 
 Une autre structure que j’aime beaucoup, et que j’ai utilisé encore récemment chez un client, c’est `AsyncData` qui permet d’avoir plusieurs états asynchrone et de gérer une logique différente en fonction des cas:
@@ -166,8 +167,8 @@ const MyComponent = ({ value }: MyComponentProps) => {
 On le voit directement, c’est notamment dans le `.exhaustive()` que réside la puissance de `ts-pattern`, car il nous permet de couvrir tous les cas et types de la variable, en effet, `.exhaustive()` va avoir un soucis de typage si on a oublié de gérer un des types de la variable.
 
 Prenons un autre exemple avec du code de [🚀 Start UI [web]](https://github.com/BearStudio/start-ui-web), un starter de projet dont je suis un des contributeurs.
-On a un composant `Select` qui nous permet de gérer [différent type de `select`](https://github.com/BearStudio/start-ui-web/blob/4745ab66edb5c377102ff02292433039e3d33b0b/src/components/Select/index.tsx#L37-L43): `async`, `creatable`, `async-creatable` et `select` classique.
-L’avantage de `ts-pattern` ici par rapport à un `switch` classique, c’est encore une fois de ne pas oublier de cas.
+On a un composant `Select` qui nous permet de gérer [différent type de `select`](https://github.com/BearStudio/start-ui-web/blob/4745ab66edb5c377102ff02292433039e3d33b0b/src/components/Select/index.tsx#L37-L43): `async`, `creatable`, `async-creatable` et le `select` classique.
+L’avantage de `ts-pattern` ici par rapport à un `switch` natif, c’est encore une fois de ne pas oublier de cas.
 On est sûr que si un·e développeur·euse ajoute un type de `Select`, alors TypeScript et `ts-pattern` ne valideront pas ces lignes et nous dirons qu’il y a un cas en plus à gérer.
 
 Encore une fois, je t’invite vraiment à voir tout ce qu’il est possible de faire avec cette lib, y a beaucoup de fonctionnalités sympa qui méritent le détour !
@@ -209,7 +210,7 @@ De plus `remeda` va être un peu plus léger que `lodash` (alors oui, il y a un 
 
 ![Comparaison de la taille des dépendances](./bundlephobia.png)
 
-Niveau API, je trouve ça bien sympa : soit on est en mode data-first ce qui est plus naturel pour les devs, en mode appel de fonction sur les données et traitement en deuxième genre `map(data, () => {})`, soit on est en mode data-last grâce aux fonctions qui acceptent le [currying](https://stackoverflow.com/questions/36314/what-is-currying#36321), ce qui permet de faire plusieurs traitements de suite grâce à la fonction `.pipe()` par exemple.
+Niveau API, je trouve ça bien sympa : soit on est en mode _data-first_ ce qui est plus naturel pour les devs, en mode appel de fonction sur les données et traitement en deuxième genre `map(data, () => {})`, soit on est en mode _data-last_ grâce aux fonctions qui acceptent le [currying](https://stackoverflow.com/questions/36314/what-is-currying#36321), ce qui permet de faire plusieurs traitements de suite grâce à la fonction `.pipe()` par exemple.
 
 ## Mention spéciale: nuqs
 
@@ -218,9 +219,9 @@ La faute au personne qui implémentent les sites avec des états en mémoire et 
 
 C'est là que [`nuqs`](https://nuqs.47ng.com/) entre en jeu !
 C'est une dépendance pour Next.js qui va te permettre de gérer tes états dans l'URL, tout en aillant un fort typage avec de la (dé)sérialisation.
-Tu n'as plus aucune raison de ne pas utiliser l'URL pour gérer les états qui le mérite.
+Tu n'as plus aucune raison de ne pas utiliser l'URL pour gérer les états qui le mérite !
 
-Si tu veux en savoir plus sur `nuqs`, je t'invite à aller voir [la conférence de son développeur François Best](https://www.youtube.com/watch?v=6hD2SPP1eus).
+Si tu veux en savoir plus sur `nuqs`, je t'invite à aller voir [la conférence (en anglais _my dear_) de son développeur François Best](https://www.youtube.com/watch?v=6hD2SPP1eus).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6hD2SPP1eus?si=rmFoiakpV0YG20uR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
 
