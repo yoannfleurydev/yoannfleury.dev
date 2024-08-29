@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import type { RecipesCollection } from "@/lib/recipes";
 import { useState } from "react";
+import { MinusCircle, PlusCircle } from "lucide-react";
 
 export type IngredientsProps = {
   ingredients: RecipesCollection[number]["data"]["ingredients"];
@@ -11,25 +13,26 @@ export const Ingredients = ({ ingredients }: IngredientsProps) => {
   return (
     <div>
       <div className="flex flex-row space-x-2 items-center">
-        <button
+        <Button
+          size="icon"
           onClick={() => {
             setParts((s) => s - 1);
           }}
-          className="bg-secondary text-gray-950 rounded-full size-8"
+          disabled={parts <= 1}
         >
-          -
-        </button>
-        <div className="min-w-36">
+          <MinusCircle className="size-4" />
+        </Button>
+        <div className="min-w-36 text-center text-lg">
           {parts} part{parts === 1 ? "" : "s"}
         </div>
-        <button
+        <Button
+          size="icon"
           onClick={() => {
             return setParts((s) => s + 1);
           }}
-          className="bg-secondary text-gray-950 rounded-full size-8"
         >
-          +
-        </button>
+          <PlusCircle className="size-4" />
+        </Button>
       </div>
       <ul>
         {ingredients.map((ingredient) => (
