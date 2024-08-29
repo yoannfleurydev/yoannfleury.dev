@@ -1,0 +1,20 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={`${title} | Yoann Fleury`}>
+  <slot name="seo" slot="seo" />
+
+  <div
+    class="py-24 px-4 sm:py-32 prose prose-invert m-auto text-primary prose-code:text-secondary prose-strong:text-secondary prose-h2:text-secondary prose-h2:font-heading flex flex-col"
+  >
+    <h1 class="font-heading text-secondary">{title}</h1>
+    <slot />
+  </div>
+</Layout>

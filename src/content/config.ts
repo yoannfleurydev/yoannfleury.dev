@@ -23,7 +23,25 @@ const talks = defineCollection({
   }),
 });
 
+const zRecipes = () =>
+  z.object({
+    title: z.string(),
+    image: z.string().optional(),
+    ingredients: z.array(
+      z.object({
+        name: z.string(),
+        variable: z.number(),
+        unit: z.string(),
+      }),
+    ),
+  });
+
+const recipes = defineCollection({
+  schema: zRecipes(),
+});
+
 export const collections = {
   talks,
   blog,
+  recipes,
 };

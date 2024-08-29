@@ -1,0 +1,27 @@
+---
+import { getRecipes } from "@/lib/recipes";
+import type { GetStaticPaths } from "astro";
+import SEO from "@/components/SEO.astro";
+
+import RecipeLayout from "@/layouts/RecipeLayout.astro";
+import { Ingredients } from "@/components/Ingredients";
+
+export const getStaticPaths = (async () => {
+  const recipes = await getRecipes();
+
+  return recipes.map((recipe) => ({
+    params: { slug: recipe.slug },
+    props: { recipe },
+  }));
+}) satisfies GetStaticPaths;
+
+const { recipe } = Astro.props;
+const { Content } = await recipe.render();
+---
+
+<RecipeLayout title={recipe.data.title}>
+  <SEO ogTitle={recipe.data.title} ogType="article" />
+
+  <Ingredients client:load ingredients={recipe.data.ingredients} />
+  <Content />
+</RecipeLayout>

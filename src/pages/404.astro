@@ -12,6 +12,11 @@ const links = [
     href: "/talks",
     description: "The talks I've given over the years",
   },
+  {
+    name: "Recipes",
+    href: "/recipes",
+    description: "Some cooking recipes I like to do",
+  },
 ];
 ---
 
@@ -47,9 +52,11 @@ const links = [
                       {link.name}
                     </a>
                   </h3>
-                  <p class="mt-2 text-sm leading-6 text-gray-400">
-                    {link.description}
-                  </p>
+                  {link.description && (
+                    <p class="mt-2 text-sm leading-6 text-gray-400">
+                      {link.description}
+                    </p>
+                  )}
                 </div>
                 <div class="flex-none self-center">
                   <span class="text-gray-400">&rarr;</span>
