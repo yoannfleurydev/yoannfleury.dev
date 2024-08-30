@@ -30,8 +30,8 @@ const zRecipes = () =>
     ingredients: z.array(
       z.object({
         name: z.string(),
-        variable: z.number(),
-        unit: z.string(),
+        variable: z.number().optional(),
+        unit: z.string().optional(),
       }),
     ),
   });
