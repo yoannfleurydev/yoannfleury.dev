@@ -23,5 +23,7 @@ const { Content } = await recipe.render();
   <SEO ogTitle={recipe.data.title} ogType="article" />
 
   <Ingredients client:load ingredients={recipe.data.ingredients} />
+
+  <h2>Recipe</h2>
   <Content />
 </RecipeLayout>
