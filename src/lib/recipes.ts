@@ -8,6 +8,6 @@ export async function getRecipes() {
 
   return collection.map((recipe) => ({
     ...recipe,
-    computed: { link: `/recipes/${recipe.slug}` },
+    computed: { link: `/recipes/${recipe.slug}/` },
   }));
 }

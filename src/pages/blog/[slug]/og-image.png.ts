@@ -2,10 +2,11 @@ import fs from "fs/promises";
 import satori from "satori";
 import sharp from "sharp";
 import type { APIRoute } from "astro";
-import { getCollection, getEntry } from "astro:content";
+import { getEntry } from "astro:content";
+import { getBlogCollection } from "@/lib/blog";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getBlogCollection();
   return posts.map((post) => ({
     params: { slug: post.slug },
   }));
@@ -66,7 +67,7 @@ export const GET: APIRoute = async function get({ params }) {
           style: "normal",
         },
       ],
-    }
+    },
   );
 
   const png = await sharp(Buffer.from(svg)).png().toBuffer();

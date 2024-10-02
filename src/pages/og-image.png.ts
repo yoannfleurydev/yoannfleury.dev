@@ -53,7 +53,7 @@ export const GET: APIRoute = async function get() {
           style: "normal",
         },
       ],
-    }
+    },
   );
 
   const png = await sharp(Buffer.from(svg)).png().toBuffer();
