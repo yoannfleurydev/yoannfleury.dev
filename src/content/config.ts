@@ -20,6 +20,7 @@ const talks = defineCollection({
     language: z.string().optional(),
     location: z.string().optional(),
     vod: z.string().url().optional(),
+    slides: z.string().optional(),
   }),
 });
 

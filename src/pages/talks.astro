@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import SEO from "@/components/SEO.astro";
 
 const talks = (await getCollection("talks")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 ---
 
@@ -61,10 +61,19 @@ const talks = (await getCollection("talks")).sort(
                     </p>
                   )}
                 </div>
-                {talk.data.vod && (
-                  <Link title="YouTube" href={talk.data.vod}>
-                    VOD
-                  </Link>
+                {(talk.data.vod || talk.data.slides) && (
+                  <div class="flex flex-row gap-2">
+                    {talk.data.vod && (
+                      <Link title="YouTube" href={talk.data.vod}>
+                        VOD
+                      </Link>
+                    )}
+                    {talk.data.slides && (
+                      <Link title="Slides" href={talk.data.slides}>
+                        Slides
+                      </Link>
+                    )}
+                  </div>
                 )}
               </article>
             ))
