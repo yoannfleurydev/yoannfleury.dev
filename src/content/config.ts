@@ -13,7 +13,7 @@ const blog = defineCollection({
 const talks = defineCollection({
   schema: z.object({
     title: z.string(),
-    url: z.string().url(),
+    url: z.string().url().optional(),
     thumbnail: z.string().optional(),
     description: z.string().optional(),
     date: z.date(),

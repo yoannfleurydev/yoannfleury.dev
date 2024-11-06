@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Link from "../components/Link.astro";
 import Layout from "../layouts/Layout.astro";
 import SEO from "@/components/SEO.astro";
+import { cn } from "@/lib/utils";
 
 const talks = (await getCollection("talks")).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
@@ -49,11 +50,19 @@ const talks = (await getCollection("talks")).sort(
                   )}
                 </div>
                 <div class="group relative">
-                  <h3 class="mt-3 text-lg font-semibold leading-6 text-primary group-hover:text-secondary">
-                    <a href={talk.data.url}>
-                      <span class="absolute inset-0" />
-                      {talk.data.title}
-                    </a>
+                  <h3
+                    class={cn(
+                      "mt-3 text-lg font-semibold leading-6 text-primary ",
+                      { "group-hover:text-secondary": talk.data.url },
+                    )}
+                  >
+                    {talk.data.url && (
+                      <a href={talk.data.url}>
+                        <span class="absolute inset-0" />
+                        {talk.data.title}
+                      </a>
+                    )}
+                    {!talk.data.url && <p>{talk.data.title}</p>}
                   </h3>
                   {talk.data.description && (
                     <p class="mt-5 text-sm leading-6 text-primary">
