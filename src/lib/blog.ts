@@ -7,5 +7,5 @@ export async function getBlogCollection() {
 
   return collection
     .toSorted((a, b) => b.data.date.getTime() - a.data.date.getTime())
-    .map((post) => ({ ...post, computed: { link: `/blog/${post.slug}` } }));
+    .map((post) => ({ ...post, computed: { link: `/blog/${post.id}` } }));
 }

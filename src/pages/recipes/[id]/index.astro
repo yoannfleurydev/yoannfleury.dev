@@ -2,6 +2,7 @@
 import { getRecipes } from "@/lib/recipes";
 import type { GetStaticPaths } from "astro";
 import SEO from "@/components/SEO.astro";
+import { render } from "astro:content";
 
 import RecipeLayout from "@/layouts/RecipeLayout.astro";
 import { Ingredients } from "@/components/Ingredients";
@@ -10,13 +11,13 @@ export const getStaticPaths = (async () => {
   const recipes = await getRecipes();
 
   return recipes.map((recipe) => ({
-    params: { slug: recipe.slug },
+    params: { id: recipe.id },
     props: { recipe },
   }));
 }) satisfies GetStaticPaths;
 
 const { recipe } = Astro.props;
-const { Content } = await recipe.render();
+const { Content } = await render(recipe);
 ---
 
 <RecipeLayout title={recipe.data.title}>

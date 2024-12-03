@@ -8,12 +8,12 @@ import { getBlogCollection } from "@/lib/blog";
 export async function getStaticPaths() {
   const posts = await getBlogCollection();
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { id: post.id },
   }));
 }
 
 export const GET: APIRoute = async function get({ params }) {
-  const post = await getEntry("blog", params.slug ?? "");
+  const post = await getEntry("blog", params.id ?? "");
 
   const sonoData = await fs.readFile("./public/fonts/sono/Sono-Regular.ttf");
 

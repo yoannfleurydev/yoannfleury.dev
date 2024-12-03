@@ -4,18 +4,19 @@ import BlogLayout from "@/layouts/BlogLayout.astro";
 import { subYears, isBefore } from "date-fns";
 import { getBlogCollection } from "@/lib/blog";
 import SEO from "@/components/SEO.astro";
+import { render } from "astro:content";
 
 export const getStaticPaths = (async () => {
   const blogCollection = await getBlogCollection();
 
   return blogCollection.map((blog) => ({
-    params: { slug: blog.slug },
+    params: { id: blog.id },
     props: { blog },
   }));
 }) satisfies GetStaticPaths;
 
 const { blog } = Astro.props;
-const { Content } = await blog.render();
+const { Content } = await render(blog);
 
 const nowMinus2Years = subYears(new Date(), 2);
 const shouldDisplayWarning = isBefore(blog.data.date, nowMinus2Years);
