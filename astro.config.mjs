@@ -5,7 +5,6 @@ import { rendererRich, transformerTwoslash } from "@shikijs/twoslash";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel";
-import { CopyFilesPlugin } from "./sitemap-copier.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -35,7 +34,6 @@ export default defineConfig({
     }),
     sitemap(),
     react(),
-    CopyFilesPlugin(),
   ],
   adapter: vercel({
     webAnalytics: {

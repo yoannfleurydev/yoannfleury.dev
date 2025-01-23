@@ -1,4 +1,4 @@
-const colors = require("tailwindcss/colors");
+import colors from "tailwindcss/colors";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -20,8 +20,6 @@ export default {
       },
       colors: {
         gray: colors.neutral,
-        primary: "hsl(var(--primary))",
-        secondary: "hsl(var(--secondary))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
