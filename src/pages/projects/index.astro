@@ -1,0 +1,90 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SEO from "@/components/SEO.astro";
+import { getProjectCollection } from "@/lib/projects";
+import { z } from "astro/zod";
+import { LucideStar } from "lucide-react";
+
+const projectCollection = await getProjectCollection();
+
+const getGitHubApiUrl = (slug: string) =>
+  `https://api.github.com/repos/${slug}`;
+
+const projects = await Promise.all(
+  projectCollection.map(async (project) => {
+    if (project.data.link.type !== "github") {
+      return { ...project, data: { ...project.data, repository: undefined } };
+    }
+
+    const response = await fetch(getGitHubApiUrl(project.data.link.slug));
+    const json = await response.json();
+
+    const repository = z
+      .object({
+        stargazers_count: z.number().nonnegative(),
+        description: z.string().nullish(),
+        topics: z.array(z.string()),
+        // [TODO] add languages as tags later
+      })
+      .safeParse(json);
+
+    return {
+      ...project,
+      data: {
+        ...project.data,
+        repository: repository.success ? repository.data : undefined,
+      },
+    };
+  }),
+);
+---
+
+<Layout
+  title="Projects | Yoann Fleury"
+  description="All my projects, from all my organizations to my personnal ones."
+>
+  <SEO slot="seo" ogTitle="Projects" />
+  <div class="py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl">
+        <h1
+          class="font-heading text-secondary text-3xl font-bold tracking-tight sm:text-4xl"
+        >
+          Projects
+        </h1>
+        <p class="mt-2 text-lg leading-8 text-white">
+          All my projects, from all my organizations to my personnal ones.
+        </p>
+        <div
+          class="mt-10 space-y-16 border-t border-secondary pt-10 sm:mt-16 sm:pt-16"
+        >
+          {
+            projects.map((project) => (
+              <article class="flex  flex-col items-start justify-between w-full">
+                <div class="group relative flex flex-col gap-1 w-full">
+                  <div class="flex justify-between">
+                    <h2 class="mt-3 text-lg font-semibold leading-6 text-primary group-hover:text-secondary font-heading">
+                      <a href={project.data.link.href}>
+                        <span class="absolute inset-0" />
+                        {project.data.title}
+                      </a>
+                    </h2>
+                    {project.data.repository && (
+                      <span class="flex gap-1 items-center">
+                        {project.data.repository.stargazers_count}{" "}
+                        <LucideStar className=" w-4 h-4" />
+                      </span>
+                    )}
+                  </div>
+                  {project.data.repository?.description && (
+                    <p>{project.data.repository.description}</p>
+                  )}
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

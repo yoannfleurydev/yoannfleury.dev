@@ -44,8 +44,30 @@ const recipes = defineCollection({
     }),
 });
 
+const projects = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/projects" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      image: image().nullish(),
+      link: z
+        .discriminatedUnion("type", [
+          z.object({ type: z.literal("custom"), href: z.string().url() }),
+          z.object({ type: z.literal("github"), slug: z.string() }),
+        ])
+        .transform((o) => {
+          if (o.type !== "github") {
+            return o;
+          }
+
+          return { ...o, href: `https://github.com/${o.slug}` };
+        }),
+    }),
+});
+
 export const collections = {
   talks,
   blog,
   recipes,
+  projects,
 };
