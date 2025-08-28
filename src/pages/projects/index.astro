@@ -10,33 +10,40 @@ const projectCollection = await getProjectCollection();
 const getGitHubApiUrl = (slug: string) =>
   `https://api.github.com/repos/${slug}`;
 
-const projects = await Promise.all(
-  projectCollection.map(async (project) => {
-    if (project.data.link.type !== "github") {
-      return { ...project, data: { ...project.data, repository: undefined } };
-    }
+const projects = (
+  await Promise.all(
+    projectCollection.map(async (project) => {
+      if (project.data.link.type !== "github") {
+        return { ...project, data: { ...project.data, repository: undefined } };
+      }
 
-    const response = await fetch(getGitHubApiUrl(project.data.link.slug));
-    const json = await response.json();
+      const response = await fetch(getGitHubApiUrl(project.data.link.slug));
+      const json = await response.json();
 
-    const repository = z
-      .object({
-        stargazers_count: z.number().nonnegative(),
-        description: z.string().nullish(),
-        topics: z.array(z.string()),
-        // [TODO] add languages as tags later
-      })
-      .safeParse(json);
+      const repository = z
+        .object({
+          stargazers_count: z.number().nonnegative(),
+          description: z.string().nullish(),
+          topics: z.array(z.string()),
+          // [TODO] add languages as tags later
+        })
+        .safeParse(json);
 
-    return {
-      ...project,
-      data: {
-        ...project.data,
-        repository: repository.success ? repository.data : undefined,
-      },
-    };
-  }),
-);
+      return {
+        ...project,
+        data: {
+          ...project.data,
+          repository: repository.success ? repository.data : undefined,
+        },
+      };
+    }),
+  )
+).sort((pA, pB) => {
+  return (
+    (pB.data.repository?.stargazers_count ?? 0) -
+    (pA.data.repository?.stargazers_count ?? 0)
+  );
+});
 ---
 
 <Layout
