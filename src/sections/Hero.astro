@@ -2,6 +2,10 @@
 import { Image } from "astro:assets";
 import Link from "@/components/Link.astro";
 import yoann from "@/assets/yoann-fleury.jpeg";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="relative">
@@ -24,14 +28,14 @@ import yoann from "@/assets/yoann-fleury.jpeg";
             Hello! Bonjour&nbsp;!
           </h1>
           <p class="text-lg leading-8 text-primary">
-            My name is <strong class="font-bold text-secondary"
-              >Yoann Fleury</strong
-            >, I am a frontend web developer at
+            {t("home.hero.my-name-is")}
+            <strong class="font-bold text-secondary">Yoann Fleury</strong>,
+            {t("home.hero.job")}
             <Link
               href="https://www.bearstudio.fr"
               title="BearStudio's main page">BearStudio</Link
             >
-            and an organizer at
+            {t("home.hero.organizer")}
             <Link
               href="https://www.forkit.community/"
               title="Fork it! Community website">Fork it! Community</Link
@@ -45,7 +49,7 @@ import yoann from "@/assets/yoann-fleury.jpeg";
     <Image
       class="aspect-square object-cover lg:aspect-auto lg:h-full lg:w-full object-left-top"
       src={yoann}
-      alt="Yoann speaking in front of more than one thousand attendees for Codeurs en Seine 2023"
+      alt={t("home.hero.img.alt")}
       loading="eager"
     />
   </div>

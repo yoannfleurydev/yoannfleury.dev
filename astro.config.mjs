@@ -11,6 +11,10 @@ export default defineConfig({
     contentIntellisense: true,
   },
   site: "https://www.yoannfleury.dev",
+  i18n: {
+    locales: ["en", "fr"],
+    defaultLocale: "en",
+  },
   markdown: {
     shikiConfig: {
       theme: "github-dark",

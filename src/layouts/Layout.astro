@@ -18,10 +18,15 @@ const {
 
 import "@/styles/globals.css";
 import "@/styles/code.scss";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -47,24 +52,24 @@ import "@/styles/code.scss";
           >
             <div class="flex gap-x-8">
               <a
-                href="/"
+                href={getRelativeLocaleUrl(lang, "/")}
                 class="text-sm font-semibold text-primary hover:text-secondary"
-                >Home</a
+                >{t("nav.home")}</a
               >
               <a
-                href="/blog/"
+                href={getRelativeLocaleUrl(lang, "/blog/")}
                 class="text-sm font-semibold text-primary hover:text-secondary"
-                >Blog</a
+                >{t("nav.blog")}</a
               >
               <a
-                href="/projects/"
+                href={getRelativeLocaleUrl(lang, "/projects/")}
                 class="text-sm font-semibold text-primary hover:text-secondary"
-                >Projects</a
+                >{t("nav.projects")}</a
               >
               <a
-                href="/talks/"
+                href={getRelativeLocaleUrl(lang, "/talks/")}
                 class="text-sm font-semibold text-primary hover:text-secondary"
-                >Talks</a
+                >{t("nav.talks")}</a
               >
             </div>
           </nav>
