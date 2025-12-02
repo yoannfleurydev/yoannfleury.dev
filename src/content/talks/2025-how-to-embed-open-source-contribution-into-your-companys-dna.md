@@ -16,7 +16,7 @@ description: >
   BearStudio. If you’re looking for grounded insights into the challenges and rewards of contributing to open source as
   a team, this talk aims to offer a realistic and practical perspective.
 
-url: https://sunny-tech.io/sessions/cm3y72ywx007jpydec411r8x0/
+url: https://2025.sunny-tech.io/sessions/cm3y72ywx007jpydec411r8x0/
 date: 2025-06-26
 language: english
 location: SunnyTech - Institut Agro Montpellier 2 Place Pierre Viala, 34060 Montpellier
