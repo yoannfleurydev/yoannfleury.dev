@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
 import { rendererRich, transformerTwoslash } from "@shikijs/twoslash";
 import sitemap from "@astrojs/sitemap";
@@ -30,8 +30,10 @@ export default defineConfig({
       ],
     },
   },
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
-    tailwind({ applyBaseStyles: false }),
     mdx({
       syntaxHighlight: "shiki",
     }),
