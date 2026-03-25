@@ -19,9 +19,9 @@ export const Ingredients = ({ ingredients, servings = 1 }: IngredientsProps) => 
         <Button
           size="icon"
           onClick={() => {
-            setPortions((s) => s - 1);
+            setPortions((s) => s - servings);
           }}
-          disabled={portions <= 1}
+          disabled={portions <= servings}
         >
           <MinusCircle className="size-4" />
         </Button>
@@ -31,7 +31,7 @@ export const Ingredients = ({ ingredients, servings = 1 }: IngredientsProps) => 
         <Button
           size="icon"
           onClick={() => {
-            return setPortions((s) => s + 1);
+            return setPortions((s) => s + servings);
           }}
         >
           <PlusCircle className="size-4" />
@@ -48,7 +48,7 @@ export const Ingredients = ({ ingredients, servings = 1 }: IngredientsProps) => 
                 htmlFor={slug}
                 className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 peer-data-[state=checked]:line-through peer-data-[state=checked]:text-gray-400"
               >
-                {ingredient.variable ? ingredient.variable * portions : null}{" "}
+                {ingredient.variable ? (ingredient.variable / servings) * portions : null}{" "}
                 {ingredient.unit} {ingredient.name}
               </label>
             </div>
