@@ -7,10 +7,11 @@ import slugify from "slugify";
 
 export type IngredientsProps = {
   ingredients: RecipesCollection[number]["data"]["ingredients"];
+  servings?: number;
 };
 
-export const Ingredients = ({ ingredients }: IngredientsProps) => {
-  const [portions, setPortions] = useState(2);
+export const Ingredients = ({ ingredients, servings = 1 }: IngredientsProps) => {
+  const [portions, setPortions] = useState(servings);
 
   return (
     <div className="flex flex-col gap-4">
