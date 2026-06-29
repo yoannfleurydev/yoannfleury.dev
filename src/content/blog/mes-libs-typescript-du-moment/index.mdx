@@ -84,9 +84,12 @@ const data = {
 
 const myCharacter = zCharacter().parse(data);
 ```
+
 <LinkToCode
   href="https://www.typescriptlang.org/play/?#code/JYWwDg9gTgLgBAbzgLzgXzgMyhEcBEyEAJvgNwBQFApgB6SxwDGEAdgM7zIDCAFgIZR+TGNShwAvHAAUASkkA+CnBQA6CACMAVtRHSEylXGDEAXGtYBXEBrFzVwVjHuR2wGMABu1OQBpDKqz8INTmyKqcUI4A5n4BcJz8MJbsYarUViDSANr4AIIANl7U+L4EACLU-KRl+JasANasEADurPgAurL+RglgusDUqWqRMXG9MACe-WmjrLHd8dEZxGJpGdY5+ABi1CD8BSW1ALIHRwQA4itih+zspQT1Ta3tXT1G0MDRjmmaOnoGXqBYKhEYwKLzcZAyxQAqzcFjWSqGEFKEqNCLXoFCBMJLANi-bS6ZyAoFBELwiELd69FGUxHI2Fo9CYoygfjLemQpEo5nUMDAdgkUHhQRCSbScJzBaM1GyVkqOlgqn2XkK5hQKqiMxqYhJHysjGUCgsDjwPUwfiSRDxfAmfDmADMADYAIw0gjkkrmfAAFQgtGATDgACUgw1SrbEsl7j7KtVI718Ox+kxBrGCAAJaz8Zr2j34Kb9B0EMNMBoAcnYcH9geDAGUTEdbctWKsoCX8KdDomjPhPt92uZSUDPSDO4VBqw4PWwPxe6O6rDO7wYDAwKkAPSbqLl3PEEDQKb8AWqFggTcn4Cb7G4jxsTfOgAs+HiaALt7xbBLI6B+C9nYAKKCDAvALn+KIrmuG6mNuu4NPuh6wJMV5nrgl4CjeOJfqwm4AEwAAyvr0762uyyxQeuW47uGiFHihp7nhh15MAIQgiGIl6eEkgibi6rqqFo-TROB+D8oKwoltk8RJquVGwTRe5tkhx6MehV6buJQqrPhADsxFGB0BaQT6ckwXBtHKfRqFMRprGCMIohQHxbqiUwmr6qQPqEa6AAcAC0BGuv5roEb6fmmIRphPgJukEY6ABar5oFQpqcHAICTHwDkceIUg8Gxjl2Eic5QOwPgWvwsiUKO25wAAegA-EAA"
->Lien vers le Playground TypeScript avec ce code</LinkToCode>
+>
+    Lien vers le Playground TypeScript avec ce code
+</LinkToCode>
 
 On voit donc la convention en `zMonEntite` sous forme de fonction pour garder le concept de base de zod et de pouvoir passer d’éventuels paramètres à l’avenir.
 
@@ -202,9 +205,12 @@ const keyValuesObject = Object.keys(Routes);
 // Poorly typed 😔
 const keyValuesLodash = lodashKeys(Routes);
 ```
+
 <LinkToCode
   href="https://www.typescriptlang.org/play/?ssl=25&ssc=14&pln=1&pc=1#code/JYWwDg9gTgLgBAbzgawKYE8DOcC+cBmUEIcA5FKiKgCYCGpA3AFCiSyIoba3YA2EdTAAsA0l1wEiJUv0FDGTJgGMIAO0zwAShACuMVNgC8iJnDNwAEsVQAuE+YdxetAEapedgERWqngDSmjma8wKrIXgD0-oFmOAEOAIIuujB2CDGOzm4ecJ5JKdFBwaHhuRGuBRk4TNVMERFwACroYDRwgKDkymoanOgAarS8OgZwxmhYABTaegYAlMxFcPVwAHoA-IrLAAoQ0LzocDAtbYC8G4Aoe13q8OMDQwYA8i4AVqhK8MaPL28AdOOYUyk5gsist1psGjs9gcjq1qHBzpcejdBsNMAAZAQ8ISjJyY4RiSbTfSYeYZBygtZAA"
->Lien vers le Playground TypeScript avec ce code</LinkToCode>
+>
+    Lien vers le Playground TypeScript avec ce code
+</LinkToCode>
 
 De plus `remeda` va être un peu plus léger que `lodash` (alors oui, il y a un peu moins de fonctions, mais j’avoue que pour l’instant, j’ai jamais manqué de fonctions avec `remeda`) ce qui est fortement appréciable.
 
@@ -215,7 +221,7 @@ Niveau API, je trouve ça bien sympa : soit on est en mode _data-first_ ce qui e
 ## Mention spéciale: nuqs
 
 Marre des sites qui ne gardent pas la pagination comme il faut ou ne gardent pas les informations de filtre et recherche quand tu recharges la page ?
-La faute aux personnes qui implémentent les sites avec des états en mémoire et pas dans l'URL parce qu'elles sont ignorantes, ou parce qu'elles trouvent ça galère de gérer le typage et la logique pour le faire. 
+La faute aux personnes qui implémentent les sites avec des états en mémoire et pas dans l'URL parce qu'elles sont ignorantes, ou parce qu'elles trouvent ça galère de gérer le typage et la logique pour le faire.
 
 C'est là que [`nuqs`](https://nuqs.dev/) entre en jeu !
 C'est une dépendance pour Next.js qui va te permettre de gérer tes états dans l'URL, tout en aillant un fort typage avec de la (dé)sérialisation.

@@ -6,6 +6,7 @@ export const ui = {
   en: {
     "home.hero.my-name-is": "My name is",
     "home.hero.job": "I am a frontend web developer at",
+    "home.hero.engineer": ", an engineer at",
     "home.hero.organizer": "and an organizer at",
     "home.hero.img.alt":
       "Yoann speaking in front of more than one thousand attendees for Codeurs en Seine 2023",
